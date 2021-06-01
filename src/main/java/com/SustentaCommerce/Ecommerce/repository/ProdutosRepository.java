@@ -1,9 +1,9 @@
-package com.sustentaCommerce.ecommerce.repository;
+package com.SustentaCommerce.Ecommerce.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.sustentaCommerce.ecommerce.model.Produtos;
+import com.SustentaCommerce.Ecommerce.model.Produtos;
 
 @Repository
 public interface ProdutosRepository extends JpaRepository<Produtos, Long>{

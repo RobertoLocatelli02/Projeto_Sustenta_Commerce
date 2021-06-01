@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.model;
+package com.SustentaCommerce.Ecommerce.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ public class Categorias {
 	Categorias() {
 		super();
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCategoria;
@@ -26,15 +27,9 @@ public class Categorias {
 	@NotNull
 	private String departamentoProduto;
 	
-	@NotNull
-	private String tipoProduto;
-	
-	@NotNull
-	private String materiaPrimaProduto;
-	
 	@OneToMany(mappedBy = "categoria_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("categoria_produtos")
-	private List<Produtos> categoria_produtos2 = new ArrayList<>();
+	private List<Produtos> categoria_produtos = new ArrayList<>();
 
 	public Long getIdCategoria() {
 		return idCategoria;
@@ -52,28 +47,12 @@ public class Categorias {
 		this.departamentoProduto = departamentoProduto;
 	}
 
-	public String getTipoProduto() {
-		return tipoProduto;
+	public List<Produtos> getCategoria_produtos() {
+		return categoria_produtos;
 	}
 
-	public void setTipoProduto(String tipoProduto) {
-		this.tipoProduto = tipoProduto;
-	}
-
-	public String getMateriaPrimaProduto() {
-		return materiaPrimaProduto;
-	}
-
-	public void setMateriaPrimaProduto(String materiaPrimaProduto) {
-		this.materiaPrimaProduto = materiaPrimaProduto;
-	}
-
-	public List<Produtos> getCategoria_produtos2() {
-		return categoria_produtos2;
-	}
-
-	public void setCategoria_produtos2(List<Produtos> categoria_produtos2) {
-		this.categoria_produtos2 = categoria_produtos2;
+	public void setCategoria_produtos(List<Produtos> categoria_produtos) {
+		this.categoria_produtos = categoria_produtos;
 	}
 	
 }

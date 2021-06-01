@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.model;
+package com.SustentaCommerce.Ecommerce.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,17 +31,20 @@ public class Produtos {
 	
 	@NotNull
 	private Float precoUnitarioProduto;
+
+	@NotNull
+	private String imagemProduto;
 	
 	@NotNull
 	private Integer quantidadeProduto;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "categoria_produtos")
+	@JoinColumn(name = "categoria_produtos", referencedColumnName = "idCategoria")
 	@JsonIgnoreProperties({"categoria_produtos","idCategoria"})
 	private Categorias categoria_produtos_criados;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_produto")
+	@JoinColumn(name = "usuario_produto", referencedColumnName = "idUsuario")
 	private Usuario usuario_produtos_criados;
 
 	public Long getIdProduto() {
@@ -84,6 +87,10 @@ public class Produtos {
 		this.quantidadeProduto = quantidadeProduto;
 	}
 
+	public String getImagemProduto() {
+		return imagemProduto;
+	}
+
 	public Categorias getCategoria_produtos_criados() {
 		return categoria_produtos_criados;
 	}
@@ -91,7 +98,7 @@ public class Produtos {
 	public void setCategoria_produtos_criados(Categorias categoria_produtos_criados) {
 		this.categoria_produtos_criados = categoria_produtos_criados;
 	}
-	
+
 	public Usuario getUsuario_produtos_criados() {
 		return usuario_produtos_criados;
 	}
@@ -99,4 +106,9 @@ public class Produtos {
 	public void setUsuario_produtos_criados(Usuario usuario_produtos_criados) {
 		this.usuario_produtos_criados = usuario_produtos_criados;
 	}
+
+	public void setImagemProduto(String imagemProduto) {
+		this.imagemProduto = imagemProduto;
+	}
+	
 }

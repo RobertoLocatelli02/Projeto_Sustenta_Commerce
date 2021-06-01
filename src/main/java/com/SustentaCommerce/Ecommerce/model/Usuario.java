@@ -1,8 +1,9 @@
-package com.sustentaCommerce.ecommerce.model;
+package com.SustentaCommerce.Ecommerce.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,10 +38,9 @@ public class Usuario {
 	@NotNull
 	private String senhaUsuario;
 	
-	@NotNull
-	private String tipoPagamento;
+	private String tipoUsuario;
 	
-	@OneToMany(mappedBy = "usuario_produtos_criados")
+	@OneToMany(mappedBy = "usuario_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"usuario_produto"})
 	private List<Produtos> usuario_produto = new ArrayList<>();
 
@@ -50,14 +50,6 @@ public class Usuario {
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 
 	public String getEmailUsuario() {
@@ -76,12 +68,12 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	public String getTipoPagamento() {
-		return tipoPagamento;
+	public String getTipoUsuario() {
+		return tipoUsuario;
 	}
 
-	public void setTipoPagamento(String tipoPagamento) {
-		this.tipoPagamento = tipoPagamento;
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public List<Produtos> getUsuario_produto() {
@@ -90,6 +82,14 @@ public class Usuario {
 
 	public void setUsuario_produto(List<Produtos> usuario_produto) {
 		this.usuario_produto = usuario_produto;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	
 }

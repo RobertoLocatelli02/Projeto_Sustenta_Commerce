@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.controller;
+package com.SustentaCommerce.Ecommerce.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.sustentaCommerce.ecommerce.model.Produtos;
-import com.sustentaCommerce.ecommerce.repository.ProdutosRepository;
+import com.SustentaCommerce.Ecommerce.model.Produtos;
+import com.SustentaCommerce.Ecommerce.repository.ProdutosRepository;
 
 @RestController
 @CrossOrigin("*")
@@ -36,6 +36,11 @@ public class ProdutoController {
 	@GetMapping("/id/{idProduto}") // retorna um produto por id
 	ResponseEntity<Produtos> findByIdProduto(@PathVariable Long idProduto) { // end point
 		return repositoryP.findById(idProduto).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping("/nome/{nomeProduto}")
+	public ResponseEntity<List<Produtos>> getByNome(@PathVariable String nomeProduto) {
+		return ResponseEntity.ok(repositoryP.findAllByNomeProdutoContainingIgnoreCase(nomeProduto));
 	}
 
 	@GetMapping("/precoUnitario/{precoUnitarioProduto}") // retorna todos os produtos por um preço unitario

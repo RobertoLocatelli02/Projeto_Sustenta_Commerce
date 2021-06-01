@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.service;
+package com.SustentaCommerce.Ecommerce.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.sustentaCommerce.ecommerce.model.UserLogin;
-import com.sustentaCommerce.ecommerce.model.Usuario;
-import com.sustentaCommerce.ecommerce.repository.UsuarioRepository;
+import com.SustentaCommerce.Ecommerce.model.UserLogin;
+import com.SustentaCommerce.Ecommerce.model.Usuario;
+import com.SustentaCommerce.Ecommerce.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
@@ -27,6 +27,18 @@ public class UsuarioService {
 			String senhaCriptografada = encoder.encode(usuarioNovo.getSenhaUsuario());
 			usuarioNovo.setSenhaUsuario(senhaCriptografada);
 			return Optional.ofNullable(repository.save(usuarioNovo));
+		}
+	}
+	
+	public Optional<Usuario> atualizarUsuario(Usuario usuarioAtualizado) {
+		Optional<Usuario> usuarioExistente = repository.findByEmailUsuario(usuarioAtualizado.getEmailUsuario());
+		if(usuarioExistente.isPresent()) {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String senhaCriptografada = encoder.encode(usuarioAtualizado.getSenhaUsuario());
+			usuarioAtualizado.setSenhaUsuario(senhaCriptografada);
+			return Optional.ofNullable(repository.save(usuarioAtualizado));
+		} else {
+			return Optional.empty();
 		}
 	}
 	
