@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.controller;
+package com.SustentaCommerce.Ecommerce.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.sustentaCommerce.ecommerce.model.UserLogin;
-import com.sustentaCommerce.ecommerce.model.Usuario;
-import com.sustentaCommerce.ecommerce.repository.UsuarioRepository;
-import com.sustentaCommerce.ecommerce.service.UsuarioService;
+import com.SustentaCommerce.Ecommerce.model.UserLogin;
+import com.SustentaCommerce.Ecommerce.model.Usuario;
+import com.SustentaCommerce.Ecommerce.repository.UsuarioRepository;
+import com.SustentaCommerce.Ecommerce.service.UsuarioService;
 
 @RestController
 @CrossOrigin("*")
@@ -78,8 +78,6 @@ public class UsuarioController {
 			usuarioExistente.get().setUsuario(usuarioAtualizado.getUsuario());
 			usuarioExistente.get().setEmailUsuario(usuarioAtualizado.getEmailUsuario());
 			usuarioExistente.get().setSenhaUsuario(usuarioAtualizado.getSenhaUsuario());
-			usuarioExistente.get().setTipoPagamento(usuarioAtualizado.getTipoPagamento());
-
 			return ResponseEntity.status(HttpStatus.CREATED).body(repositoryU.save(usuarioExistente.get()));
 		} else {
 			return ResponseEntity.notFound().build();
