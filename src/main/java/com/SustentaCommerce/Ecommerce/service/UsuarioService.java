@@ -52,8 +52,14 @@ public class UsuarioService {
 				String token = "Basic " + new String(encodedAuth);
 				
 				loginUser.get().setToken(token);
+				loginUser.get().setId(usuarioPresente.get().getIdUsuario());
 				loginUser.get().setNome(usuarioPresente.get().getUsuario());
 				loginUser.get().setSenha(usuarioPresente.get().getSenhaUsuario());
+				loginUser.get().setFoto(usuarioPresente.get().getFoto());
+				loginUser.get().setUsuarioAdministrador(usuarioPresente.get().getUsuarioAdministrador());
+				loginUser.get().setUsuarioVendedor(usuarioPresente.get().getUsuarioVendedor());
+			
+				
 				return loginUser;
 			}
 		}
