@@ -37,8 +37,10 @@ public class Usuario {
 	
 	@NotNull
 	private String senhaUsuario;
+	private Boolean usuarioVendedor;
+	private Boolean usuarioAdministrador;
+	private String foto;
 	
-	private String tipoUsuario;
 	
 	@OneToMany(mappedBy = "usuario_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"usuario_produto"})
@@ -68,14 +70,6 @@ public class Usuario {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
 	public List<Produtos> getUsuario_produto() {
 		return usuario_produto;
 	}
@@ -90,6 +84,30 @@ public class Usuario {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
+	}
+
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
+	}
+
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }

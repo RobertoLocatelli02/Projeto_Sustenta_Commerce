@@ -78,6 +78,10 @@ public class UsuarioController {
 			usuarioExistente.get().setUsuario(usuarioAtualizado.getUsuario());
 			usuarioExistente.get().setEmailUsuario(usuarioAtualizado.getEmailUsuario());
 			usuarioExistente.get().setSenhaUsuario(usuarioAtualizado.getSenhaUsuario());
+			usuarioExistente.get().setFoto(usuarioAtualizado.getFoto());
+			usuarioExistente.get().setUsuarioAdministrador(usuarioAtualizado.getUsuarioAdministrador());
+			usuarioExistente.get().setUsuarioVendedor(usuarioAtualizado.getUsuarioVendedor());
+			
 			return ResponseEntity.status(HttpStatus.CREATED).body(repositoryU.save(usuarioExistente.get()));
 		} else {
 			return ResponseEntity.notFound().build();
