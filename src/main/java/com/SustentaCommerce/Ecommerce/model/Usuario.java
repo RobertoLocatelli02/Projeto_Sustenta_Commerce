@@ -39,11 +39,19 @@ public class Usuario {
 	private String email;
 	
 	@NotNull
+<<<<<<< HEAD
 	private String senha;
 	
 	private Boolean usuarioVendedor;
 	
 	private Boolean usuarioAdministrador;
+=======
+	private String senhaUsuario;
+	private Boolean usuarioVendedor;
+	private Boolean usuarioAdministrador;
+	private String foto;
+	
+>>>>>>> 495de226134a3491522b4b55810ac58ef154b725
 	
 	@OneToMany(mappedBy = "usuario_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"usuario_produto"})
@@ -73,6 +81,7 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
+<<<<<<< HEAD
 	public String getEmail() {
 		return email;
 	}
@@ -83,6 +92,10 @@ public class Usuario {
 
 	public String getSenha() {
 		return senha;
+=======
+	public List<Produtos> getUsuario_produto() {
+		return usuario_produto;
+>>>>>>> 495de226134a3491522b4b55810ac58ef154b725
 	}
 
 	public void setSenha(String senha) {
@@ -111,6 +124,30 @@ public class Usuario {
 
 	public void setUsuario_produto(List<Produtos> usuario_produto) {
 		this.usuario_produto = usuario_produto;
+	}
+
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
+	}
+
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
+	}
+
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }

@@ -81,11 +81,20 @@ public class UsuarioController {
 		Optional<Usuario> usuarioExistente = repositoryU.findById(usuarioAtualizado.getId());
 		if (usuarioExistente.isPresent()) {
 			usuarioExistente.get().setUsuario(usuarioAtualizado.getUsuario());
+<<<<<<< HEAD
 			usuarioExistente.get().setEmail(usuarioAtualizado.getEmail());
 			usuarioExistente.get().setSenha(usuarioAtualizado.getSenha());
 			usuarioExistente.get().setNome(usuarioAtualizado.getNome());
 			usuarioExistente.get().setUsuarioAdministrador(usuarioAtualizado.getUsuarioAdministrador());
 			usuarioExistente.get().setUsuarioVendedor(usuarioAtualizado.getUsuarioVendedor());
+=======
+			usuarioExistente.get().setEmailUsuario(usuarioAtualizado.getEmailUsuario());
+			usuarioExistente.get().setSenhaUsuario(usuarioAtualizado.getSenhaUsuario());
+			usuarioExistente.get().setFoto(usuarioAtualizado.getFoto());
+			usuarioExistente.get().setUsuarioAdministrador(usuarioAtualizado.getUsuarioAdministrador());
+			usuarioExistente.get().setUsuarioVendedor(usuarioAtualizado.getUsuarioVendedor());
+			
+>>>>>>> 495de226134a3491522b4b55810ac58ef154b725
 			return ResponseEntity.status(HttpStatus.CREATED).body(repositoryU.save(usuarioExistente.get()));
 		} else {
 			return ResponseEntity.notFound().build();
