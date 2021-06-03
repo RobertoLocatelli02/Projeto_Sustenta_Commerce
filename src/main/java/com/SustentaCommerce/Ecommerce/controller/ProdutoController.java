@@ -48,6 +48,11 @@ public class ProdutoController {
 		return ResponseEntity.ok(repositoryP.findAllByPrecoUnitario(precoUnitario));
 	}
 
+	@GetMapping("/descricao/{descricao}")
+	public ResponseEntity<List<Produtos>> getByDescricao(@PathVariable String descricao) {
+		return ResponseEntity.ok(repositoryP.findAllByDescricaoContainingIgnoreCase(descricao));
+	}
+	
 	@PostMapping // criar um novo produto
 	ResponseEntity<Produtos> postProduto(@Valid @RequestBody Produtos produtoNovo) { // end point
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryP.save(produtoNovo));

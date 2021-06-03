@@ -39,13 +39,21 @@ public class Produtos {
 	private Integer quantidade;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "categoria_produtos", referencedColumnName = "idCategoria")
+	@JoinColumn(name = "categoria_produtos", referencedColumnName = "id")
 	@JsonIgnoreProperties({"categoria_produtos","idCategoria"})
 	private Categorias categoria_produtos_criados;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_produto", referencedColumnName = "idUsuario")
+	@JoinColumn(name = "usuario_produto", referencedColumnName = "id")
 	private Usuario usuario_produtos_criados;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -103,12 +111,5 @@ public class Produtos {
 		this.usuario_produtos_criados = usuario_produtos_criados;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 }
