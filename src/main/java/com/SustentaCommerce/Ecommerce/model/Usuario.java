@@ -1,8 +1,9 @@
-package com.sustentaCommerce.ecommerce.model;
+package com.SustentaCommerce.Ecommerce.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_usuario", uniqueConstraints=@UniqueConstraint(columnNames={"emailUsuario"}))
+@Table(name = "tb_usuario", uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
 public class Usuario {
 	
 	Usuario() {
@@ -24,7 +25,10 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUsuario;
+	private Long id;
+	
+	@NotNull
+	private String nome;
 	
 	@NotNull
 	@Size(min = 5, max = 100)
@@ -32,64 +36,114 @@ public class Usuario {
 	
 	@NotNull
 	@Size(min = 5, max = 100)
-	private String emailUsuario;
+	private String email;
 	
 	@NotNull
-	private String senhaUsuario;
+	private String senha;
 	
-	@NotNull
-	private String tipoPagamento;
+	private Boolean usuarioVendedor;
 	
-	@OneToMany(mappedBy = "usuario_produtos_criados")
+	private Boolean usuarioAdministrador;
+	
+	
+	
+	@OneToMany(mappedBy = "usuario_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"usuario_produto"})
 	private List<Produtos> usuario_produto = new ArrayList<>();
 
-	public Long getIdUsuario() {
-		return idUsuario;
+
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
 
 	public String getUsuario() {
 		return usuario;
 	}
 
+
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
-	public String getEmailUsuario() {
-		return emailUsuario;
+
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getSenhaUsuario() {
-		return senhaUsuario;
+
+
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public String getTipoPagamento() {
-		return tipoPagamento;
+
+
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
 	}
 
-	public void setTipoPagamento(String tipoPagamento) {
-		this.tipoPagamento = tipoPagamento;
+
+
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
 	}
+
+
+
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+
+
+
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
+	}
+
+
 
 	public List<Produtos> getUsuario_produto() {
 		return usuario_produto;
 	}
 
+
+
 	public void setUsuario_produto(List<Produtos> usuario_produto) {
 		this.usuario_produto = usuario_produto;
 	}
-	
 }

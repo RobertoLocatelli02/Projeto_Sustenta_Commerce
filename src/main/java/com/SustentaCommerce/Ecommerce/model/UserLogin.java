@@ -1,11 +1,21 @@
-package com.sustentaCommerce.ecommerce.model;
+package com.SustentaCommerce.Ecommerce.model;
 
 public class UserLogin {
 
+	private Long id;
 	private String nome;
 	private String usuario;
+	private String email;
 	private String senha;
 	private String token;
+	private Boolean usuarioVendedor;
+	private Boolean usuarioAdministrador;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -29,5 +39,24 @@ public class UserLogin {
 	}
 	public void setToken(String token) {
 		this.token = token;
-	} 
+	}
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
+	}
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
+	}
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

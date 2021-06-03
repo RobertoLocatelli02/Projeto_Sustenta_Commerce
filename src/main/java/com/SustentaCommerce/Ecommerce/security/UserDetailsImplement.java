@@ -1,10 +1,10 @@
-package com.sustentaCommerce.ecommerce.security;
+package com.SustentaCommerce.Ecommerce.security;
 
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.sustentaCommerce.ecommerce.model.Usuario;
+import com.SustentaCommerce.Ecommerce.model.Usuario;
 
 public class UserDetailsImplement implements UserDetails {
 
@@ -15,8 +15,12 @@ public class UserDetailsImplement implements UserDetails {
 	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImplement(Usuario user) {
-		this.userName = user.getEmailUsuario();
-		this.password = user.getSenhaUsuario();
+		this.userName = user.getUsuario();
+		this.password = user.getSenha();
+	}
+
+	public UserDetailsImplement() {
+		
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.sustentaCommerce.ecommerce.controller;
+package com.SustentaCommerce.Ecommerce.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.sustentaCommerce.ecommerce.model.Categorias;
-import com.sustentaCommerce.ecommerce.repository.CategoriaRepository;
+import com.SustentaCommerce.Ecommerce.model.Categorias;
+import com.SustentaCommerce.Ecommerce.repository.CategoriaRepository;
 
 @RestController
 @CrossOrigin("*")
@@ -43,16 +43,6 @@ public class CategoriaController {
 		return ResponseEntity.ok(repositoryC.findAllByDepartamentoProdutoContainingIgnoreCase(departamentoProduto));
 	}
 	
-	@GetMapping("/tipoProduto/{tipoProduto}")
-	ResponseEntity<List<Categorias>> findByTipoProdutoCategoria(@PathVariable String tipoProduto) {
-		return ResponseEntity.ok(repositoryC.findAllByTipoProdutoContainingIgnoreCase(tipoProduto));
-	}
-	
-	@GetMapping("/materiaPrima/{materiaPrimaProduto}")
-	ResponseEntity<List<Categorias>> findByMateriaPrimaCategoria(@PathVariable String materiaPrimaProduto) {
-		return ResponseEntity.ok(repositoryC.findAllByMateriaPrimaProdutoContainingIgnoreCase(materiaPrimaProduto));
-	}
-	
 	@PostMapping
 	ResponseEntity<Categorias> postCategoria(@Valid @RequestBody Categorias categoriaNovo) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryC.save(categoriaNovo));
@@ -61,12 +51,10 @@ public class CategoriaController {
 	@PutMapping
 	ResponseEntity<Categorias> putCategoria(@Valid @RequestBody Categorias categoriaAtualizada) {
 		
-		Optional<Categorias> categoriaExistente = repositoryC.findById(categoriaAtualizada.getIdCategoria());
+		Optional<Categorias> categoriaExistente = repositoryC.findById(categoriaAtualizada.getId());
 		
 		if (categoriaExistente.isPresent()) {
 			categoriaExistente.get().setDepartamentoProduto(categoriaAtualizada.getDepartamentoProduto());
-			categoriaExistente.get().setMateriaPrimaProduto(categoriaAtualizada.getMateriaPrimaProduto());
-			categoriaExistente.get().setTipoProduto(categoriaAtualizada.getTipoProduto());
 			return ResponseEntity.status(HttpStatus.CREATED).body(repositoryC.save(categoriaExistente.get()));
 		} else {
 			return ResponseEntity.notFound().build();
