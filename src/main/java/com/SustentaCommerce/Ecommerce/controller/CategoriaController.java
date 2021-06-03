@@ -51,7 +51,7 @@ public class CategoriaController {
 	@PutMapping
 	ResponseEntity<Categorias> putCategoria(@Valid @RequestBody Categorias categoriaAtualizada) {
 		
-		Optional<Categorias> categoriaExistente = repositoryC.findById(categoriaAtualizada.getIdCategoria());
+		Optional<Categorias> categoriaExistente = repositoryC.findById(categoriaAtualizada.getId());
 		
 		if (categoriaExistente.isPresent()) {
 			categoriaExistente.get().setDepartamentoProduto(categoriaAtualizada.getDepartamentoProduto());

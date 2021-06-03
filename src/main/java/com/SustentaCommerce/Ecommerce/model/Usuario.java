@@ -25,7 +25,10 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUsuario;
+	private Long id;
+	
+	@NotNull
+	private String nome;
 	
 	@NotNull
 	@Size(min = 5, max = 100)
@@ -33,55 +36,33 @@ public class Usuario {
 	
 	@NotNull
 	@Size(min = 5, max = 100)
-	private String emailUsuario;
+	private String email;
 	
 	@NotNull
-	private String senhaUsuario;
+	private String senha;
 	
-	private String tipoUsuario;
+	private Boolean usuarioVendedor;
+	
+	private Boolean usuarioAdministrador;
 	
 	@OneToMany(mappedBy = "usuario_produtos_criados", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"usuario_produto"})
 	private List<Produtos> usuario_produto = new ArrayList<>();
 
-	public Long getIdUsuario() {
-		return idUsuario;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
-	}
-
-	public String getSenhaUsuario() {
-		return senhaUsuario;
-	}
-
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
-	}
-
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
-	public List<Produtos> getUsuario_produto() {
-		return usuario_produto;
-	}
-
-	public void setUsuario_produto(List<Produtos> usuario_produto) {
-		this.usuario_produto = usuario_produto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getUsuario() {
@@ -90,6 +71,46 @@ public class Usuario {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
+	}
+
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
+	}
+
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
+	}
+
+	public List<Produtos> getUsuario_produto() {
+		return usuario_produto;
+	}
+
+	public void setUsuario_produto(List<Produtos> usuario_produto) {
+		this.usuario_produto = usuario_produto;
 	}
 	
 }

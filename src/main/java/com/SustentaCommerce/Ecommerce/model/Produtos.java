@@ -21,22 +21,22 @@ public class Produtos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProduto;
+	private Long id;
 	
 	@NotNull
-	private String nomeProduto;
+	private String nome;
 	
 	@NotNull
-	private String descricaoProduto;
+	private String descricao;
 	
 	@NotNull
-	private Float precoUnitarioProduto;
+	private Float precoUnitario;
 
 	@NotNull
-	private String imagemProduto;
+	private String foto;
 	
 	@NotNull
-	private Integer quantidadeProduto;
+	private Integer quantidade;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria_produtos", referencedColumnName = "idCategoria")
@@ -47,48 +47,44 @@ public class Produtos {
 	@JoinColumn(name = "usuario_produto", referencedColumnName = "idUsuario")
 	private Usuario usuario_produtos_criados;
 
-	public Long getIdProduto() {
-		return idProduto;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getNomeProduto() {
-		return nomeProduto;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public String getDescricaoProduto() {
-		return descricaoProduto;
+	public Float getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setDescricaoProduto(String descricaoProduto) {
-		this.descricaoProduto = descricaoProduto;
+	public void setPrecoUnitario(Float precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public Float getPrecoUnitarioProduto() {
-		return precoUnitarioProduto;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setPrecoUnitarioProduto(Float precoUnitarioProduto) {
-		this.precoUnitarioProduto = precoUnitarioProduto;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
-	public Integer getQuantidadeProduto() {
-		return quantidadeProduto;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantidadeProduto(Integer quantidadeProduto) {
-		this.quantidadeProduto = quantidadeProduto;
-	}
-
-	public String getImagemProduto() {
-		return imagemProduto;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Categorias getCategoria_produtos_criados() {
@@ -107,8 +103,12 @@ public class Produtos {
 		this.usuario_produtos_criados = usuario_produtos_criados;
 	}
 
-	public void setImagemProduto(String imagemProduto) {
-		this.imagemProduto = imagemProduto;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

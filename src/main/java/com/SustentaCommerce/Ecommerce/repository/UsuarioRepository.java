@@ -11,6 +11,7 @@ import com.SustentaCommerce.Ecommerce.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	List<Usuario> findAllByUsuarioContainingIgnoreCase (String usuario);
-	List<Usuario> findAllByEmailUsuarioContainingIgnoreCase (String emailUsuario);
-	Optional<Usuario> findByEmailUsuario(String emailUsuario);
+	List<Usuario> findAllByNomeContainingIgnoreCase (String nome);
+	List<Usuario> findAllByEmailContainingIgnoreCase (String email);
+	Optional<Usuario> findByEmail(String email);
 }

@@ -2,12 +2,13 @@ package com.SustentaCommerce.Ecommerce.model;
 
 public class UserLogin {
 
+	private Long id;
 	private String nome;
 	private String usuario;
 	private String senha;
 	private String token;
-	private String foto;
-	private String tipo;
+	private Boolean usuarioVendedor;
+	private Boolean usuarioAdministrador;
 	public String getNome() {
 		return nome;
 	}
@@ -32,18 +33,23 @@ public class UserLogin {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	public String getFoto() {
-		return foto;
+	public Long getId() {
+		return id;
 	}
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getTipo() {
-		return tipo;
+	public Boolean getUsuarioVendedor() {
+		return usuarioVendedor;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setUsuarioVendedor(Boolean usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
+	}
+	public Boolean getUsuarioAdministrador() {
+		return usuarioAdministrador;
+	}
+	public void setUsuarioAdministrador(Boolean usuarioAdministrador) {
+		this.usuarioAdministrador = usuarioAdministrador;
 	} 
-	
 }
 

@@ -19,23 +19,23 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	public Optional<Usuario> cadastrarUsuario (Usuario usuarioNovo) {
-		Optional<Usuario> usuarioExistente = repository.findByEmailUsuario(usuarioNovo.getEmailUsuario());
+		Optional<Usuario> usuarioExistente = repository.findByEmail(usuarioNovo.getEmail());
 		if (usuarioExistente.isPresent()) {
 			return Optional.empty();
 		} else {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			String senhaCriptografada = encoder.encode(usuarioNovo.getSenhaUsuario());
-			usuarioNovo.setSenhaUsuario(senhaCriptografada);
+			String senhaCriptografada = encoder.encode(usuarioNovo.getSenha());
+			usuarioNovo.setSenha(senhaCriptografada);
 			return Optional.ofNullable(repository.save(usuarioNovo));
 		}
 	}
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuarioAtualizado) {
-		Optional<Usuario> usuarioExistente = repository.findByEmailUsuario(usuarioAtualizado.getEmailUsuario());
+		Optional<Usuario> usuarioExistente = repository.findByEmail(usuarioAtualizado.getEmail());
 		if(usuarioExistente.isPresent()) {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			String senhaCriptografada = encoder.encode(usuarioAtualizado.getSenhaUsuario());
-			usuarioAtualizado.setSenhaUsuario(senhaCriptografada);
+			String senhaCriptografada = encoder.encode(usuarioAtualizado.getSenha());
+			usuarioAtualizado.setSenha(senhaCriptografada);
 			return Optional.ofNullable(repository.save(usuarioAtualizado));
 		} else {
 			return Optional.empty();
@@ -44,16 +44,20 @@ public class UsuarioService {
 	
 	public Optional<UserLogin> logar(Optional<UserLogin> loginUser) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> usuarioPresente = repository.findByEmailUsuario(loginUser.get().getUsuario());
+		Optional<Usuario> usuarioPresente = repository.findByEmail(loginUser.get().getUsuario());
 		if(usuarioPresente.isPresent()) {
-			if(encoder.matches(loginUser.get().getSenha(), usuarioPresente.get().getSenhaUsuario())) {
+			if(encoder.matches(loginUser.get().getSenha(), usuarioPresente.get().getSenha())) {
 				String auth = loginUser.get().getUsuario() + ":" + loginUser.get().getSenha();
 				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String token = "Basic " + new String(encodedAuth);
 				
 				loginUser.get().setToken(token);
 				loginUser.get().setNome(usuarioPresente.get().getUsuario());
-				loginUser.get().setSenha(usuarioPresente.get().getSenhaUsuario());
+				loginUser.get().setSenha(usuarioPresente.get().getSenha());
+				loginUser.get().setId(usuarioPresente.get().getId());
+				loginUser.get().setUsuario(usuarioPresente.get().getUsuario());
+				loginUser.get().setUsuarioAdministrador(usuarioPresente.get().getUsuarioAdministrador());
+				loginUser.get().setUsuarioVendedor(usuarioPresente.get().getUsuarioVendedor());
 				return loginUser;
 			}
 		}

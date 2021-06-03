@@ -32,20 +32,25 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	@GetMapping("/id/{idUsuario}")
-	ResponseEntity<Usuario> findByIdUsuario(@PathVariable Long idUsuario) {
-		return repositoryU.findById(idUsuario).map(resp -> ResponseEntity.ok(resp))
+	@GetMapping("/id/{id}")
+	ResponseEntity<Usuario> findByIdUsuario(@PathVariable Long id) {
+		return repositoryU.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-	@GetMapping("/nome/{usuario}")
-	ResponseEntity<List<Usuario>> findAllByUsuarioContainingIgnoreCase(@PathVariable String usuario) {
+	@GetMapping("/nome/{nome}")
+	ResponseEntity<List<Usuario>> findAllByNome(@PathVariable String nome) {
+		return ResponseEntity.ok(repositoryU.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	@GetMapping("/usuario/{usuario}")
+	ResponseEntity<List<Usuario>> findAllByUsuario(@PathVariable String usuario) {
 		return ResponseEntity.ok(repositoryU.findAllByUsuarioContainingIgnoreCase(usuario));
 	}
 
-	@GetMapping("/email/{emailUsuario}")
-	ResponseEntity<List<Usuario>> findByEmailUsuarioContainingIgnoreCase(@PathVariable String emailUsuario) {
-		return ResponseEntity.ok(repositoryU.findAllByEmailUsuarioContainingIgnoreCase(emailUsuario));
+	@GetMapping("/email/{email}")
+	ResponseEntity<List<Usuario>> findByEmail(@PathVariable String email) {
+		return ResponseEntity.ok(repositoryU.findAllByEmailContainingIgnoreCase(email));
 	}
 
 	@GetMapping
@@ -73,11 +78,14 @@ public class UsuarioController {
 
 	@PutMapping // atualizar informações de um produto
 	ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuarioAtualizado) { // end point
-		Optional<Usuario> usuarioExistente = repositoryU.findById(usuarioAtualizado.getIdUsuario());
+		Optional<Usuario> usuarioExistente = repositoryU.findById(usuarioAtualizado.getId());
 		if (usuarioExistente.isPresent()) {
 			usuarioExistente.get().setUsuario(usuarioAtualizado.getUsuario());
-			usuarioExistente.get().setEmailUsuario(usuarioAtualizado.getEmailUsuario());
-			usuarioExistente.get().setSenhaUsuario(usuarioAtualizado.getSenhaUsuario());
+			usuarioExistente.get().setEmail(usuarioAtualizado.getEmail());
+			usuarioExistente.get().setSenha(usuarioAtualizado.getSenha());
+			usuarioExistente.get().setNome(usuarioAtualizado.getNome());
+			usuarioExistente.get().setUsuarioAdministrador(usuarioAtualizado.getUsuarioAdministrador());
+			usuarioExistente.get().setUsuarioVendedor(usuarioAtualizado.getUsuarioVendedor());
 			return ResponseEntity.status(HttpStatus.CREATED).body(repositoryU.save(usuarioExistente.get()));
 		} else {
 			return ResponseEntity.notFound().build();
