@@ -8,7 +8,7 @@ import com.SustentaCommerce.Ecommerce.model.Produtos;
 @Repository
 public interface ProdutosRepository extends JpaRepository<Produtos, Long>{
 
-	List<Produtos> findAllByNomeProdutoContainingIgnoreCase (String nomeProduto);
-	List<Produtos> findAllByDescricaoProdutoContainingIgnoreCase (String descricaoProduto);
-	List<Produtos> findAllByPrecoUnitarioProduto (Float precoUnitarioProduto);
+	List<Produtos> findAllByNomeContainingIgnoreCase (String nome);
+	List<Produtos> findAllByDescricaoContainingIgnoreCase (String descricao);
+	List<Produtos> findAllByPrecoUnitario (Float precoUnitario);
 }
