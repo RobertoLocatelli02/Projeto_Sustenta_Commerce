@@ -28,6 +28,7 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository repositoryC;
 	
+
 	@GetMapping
 	ResponseEntity<List<Categorias>> findAllCategoria() {
 		return ResponseEntity.ok(repositoryC.findAll());
@@ -35,7 +36,7 @@ public class CategoriaController {
 	
 	@GetMapping("/id/{id}")
 	ResponseEntity<Categorias> findByIdCategoria(@PathVariable Long id) {
-		return repositoryC.findById(idCategoria).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+		return repositoryC.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/departamento/{departamentoProduto}")
