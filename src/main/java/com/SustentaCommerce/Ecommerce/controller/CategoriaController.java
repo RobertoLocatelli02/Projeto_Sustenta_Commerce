@@ -33,8 +33,8 @@ public class CategoriaController {
 		return ResponseEntity.ok(repositoryC.findAll());
 	}
 	
-	@GetMapping("/id/{idCategoria}")
-	ResponseEntity<Categorias> findByIdCategoria(@PathVariable Long idCategoria) {
+	@GetMapping("/id/{id}")
+	ResponseEntity<Categorias> findByIdCategoria(@PathVariable Long id) {
 		return repositoryC.findById(idCategoria).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	
