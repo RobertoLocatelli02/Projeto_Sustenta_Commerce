@@ -19,7 +19,7 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	public Optional<Usuario> cadastrarUsuario (Usuario usuarioNovo) {
-		Optional<Usuario> usuarioExistente = repository.findByEmail(usuarioNovo.getEmail());
+		Optional<Usuario> usuarioExistente = repository.findByUsuario(usuarioNovo.getUsuario());
 		if (usuarioExistente.isPresent()) {
 			return Optional.empty();
 		} else {
@@ -31,7 +31,7 @@ public class UsuarioService {
 	}
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuarioAtualizado) {
-		Optional<Usuario> usuarioExistente = repository.findByEmail(usuarioAtualizado.getEmail());
+		Optional<Usuario> usuarioExistente = repository.findByUsuario(usuarioAtualizado.getUsuario());
 		if(usuarioExistente.isPresent()) {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String senhaCriptografada = encoder.encode(usuarioAtualizado.getSenha());
@@ -44,7 +44,7 @@ public class UsuarioService {
 	
 	public Optional<UserLogin> logar(Optional<UserLogin> loginUser) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> usuarioPresente = repository.findByEmail(loginUser.get().getUsuario());
+		Optional<Usuario> usuarioPresente = repository.findByUsuario(loginUser.get().getUsuario());
 		if(usuarioPresente.isPresent()) {
 			if(encoder.matches(loginUser.get().getSenha(), usuarioPresente.get().getSenha())) {
 				String auth = loginUser.get().getUsuario() + ":" + loginUser.get().getSenha();
