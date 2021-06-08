@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_usuario", uniqueConstraints=@UniqueConstraint(columnNames={"email, usuario"}))
+@Table(name = "tb_usuario", uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
 public class Usuario {
 	
 	Usuario() {
