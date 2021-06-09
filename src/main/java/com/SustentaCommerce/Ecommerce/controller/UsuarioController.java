@@ -92,8 +92,8 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/id/{idUsuario}")
-	void deleteUsuario(@PathVariable Long idUsuario) {
-		repositoryU.deleteById(idUsuario);
+	@DeleteMapping("/id/{id}")
+	void deleteUsuario(@PathVariable Long id) {
+		repositoryU.deleteById(id);
 	}
 }

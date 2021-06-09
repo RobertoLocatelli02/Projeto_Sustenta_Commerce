@@ -73,8 +73,8 @@ public class ProdutoController {
 		}
 	}
 
-	@DeleteMapping("/id/{idProduto}") // deletar um produto criado
-	void deleteProduto(@PathVariable Long idProduto) { // end point
-		repositoryP.deleteById(idProduto);
+	@DeleteMapping("/id/{id}") // deletar um produto criado
+	void deleteProduto(@PathVariable Long id) { // end point
+		repositoryP.deleteById(id);
 	}
 }
