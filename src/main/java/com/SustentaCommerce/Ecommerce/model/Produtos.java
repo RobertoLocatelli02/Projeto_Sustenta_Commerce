@@ -45,6 +45,7 @@ public class Produtos {
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_produto", referencedColumnName = "id")
+	@JsonIgnoreProperties({"usuario_produto"})
 	private Usuario usuario_produtos_criados;
 
 	public Long getId() {
